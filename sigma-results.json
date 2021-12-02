@@ -1,0 +1,1678 @@
+{
+  "revision": "1.0.1",
+  "issues": {
+    "created": "2021-11-15T18:42:39.599447Z",
+    "issues": [
+      {
+        "checker_id": "disk_encryption_disabled_cloudformation_workspace_volume",
+        "uuid": "045cd711-3a4f-5039-b07e-bc680b0a96ed",
+        "summary": "Missing disk-level encryption",
+        "desc": "The Amazon WorkSpace volume does not have encryption enabled, exposing data at rest.\n",
+        "remediation": "Enable volume encryption by explicitly setting the `Properties.UserVolumeEncryptionEnabled` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/workspaces-workspace/deploy.json",
+        "language": "JSON",
+        "location": {
+          "start": {
+            "line": 11,
+            "column": 43,
+            "byte": 338
+          },
+          "end": {
+            "line": 11,
+            "column": 48,
+            "byte": 343
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Enable user volume encryption.",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 11,
+                    "column": 43,
+                    "byte": 338
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 48,
+                    "byte": 343
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "disk_encryption_disabled_cloudformation_workspace_volume",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "hardcoded_secret_cloudformation",
+        "uuid": "06960e38-f066-5b97-bdae-3f8dde90b76a",
+        "summary": "File contains hardcoded secret",
+        "desc": "The Terraform configuration file contains a hardcoded secret such as a password, API key, signing key, token, etc.\n",
+        "remediation": "Avoid setting sensitive configuration values as string literals. Instead, these values should be set using variables with the sensitive data loaded from an encrypted file or secret store.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {
+          "cwe": [
+            "256"
+          ]
+        },
+        "filepath": "cft/misc/docdb-cluster/docdb_with_kms.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 12,
+            "column": 32,
+            "byte": 420
+          },
+          "end": {
+            "line": 12,
+            "column": 57,
+            "byte": 445
+          }
+        },
+        "issue_type": "hardcoded_secret_cloudformation",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "secret"
+        ]
+      },
+      {
+        "checker_id": "hardcoded_secret_cloudformation",
+        "uuid": "07709e1a-ed42-5110-aba1-e7441503cc86",
+        "summary": "File contains hardcoded secret",
+        "desc": "The Terraform configuration file contains a hardcoded secret such as a password, API key, signing key, token, etc.\n",
+        "remediation": "Avoid setting sensitive configuration values as string literals. Instead, these values should be set using variables with the sensitive data loaded from an encrypted file or secret store.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {
+          "cwe": [
+            "256"
+          ]
+        },
+        "filepath": "cft/secretsmanager/secretsmanager-secret/deploy.json",
+        "language": "JSON",
+        "location": {
+          "start": {
+            "line": 10,
+            "column": 26,
+            "byte": 348
+          },
+          "end": {
+            "line": 10,
+            "column": 92,
+            "byte": 414
+          }
+        },
+        "issue_type": "hardcoded_secret_cloudformation",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "secret"
+        ]
+      },
+      {
+        "checker_id": "missing_tls_cloudformation_load_balancer_classic",
+        "uuid": "0840376a-b4cb-5e1f-9fed-146ff1dec5c4",
+        "summary": "Missing TLS",
+        "desc": "The AWS Classic Load Balancer supports HTTP connections, indicated by the `Listeners.Protocol` value `HTTP`.\n",
+        "remediation": "Configure the load balancer to force HTTPS connections by changing the `Listeners.Protocol` to `HTTPS`.\n",
+        "severity": {
+          "level": "High",
+          "impact": "Medium",
+          "likelihood": "High"
+        },
+        "taxonomies": {
+          "cwe": [
+            "319"
+          ]
+        },
+        "filepath": "cft/ecs/ecs-service/deploy.json",
+        "language": "JSON",
+        "location": {
+          "start": {
+            "line": 165,
+            "column": 26,
+            "byte": 4046
+          },
+          "end": {
+            "line": 165,
+            "column": 30,
+            "byte": 4050
+          }
+        },
+        "issue_type": "missing_tls_cloudformation_load_balancer_classic",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto",
+          "info_leak"
+        ]
+      },
+      {
+        "checker_id": "missing_tls_cloudformation_elastic_cache",
+        "uuid": "19d3d60f-7936-5cb2-96cb-0300d5be9218",
+        "summary": "Missing TLS",
+        "desc": "The Amazon ElasticCache Redis instance does not have in-transit encryption enabled, exposing data as it is travels between nodes or to and from the application.\n",
+        "remediation": "Explicitly enable in-transit encryption by setting the `Properties.TransitEncryptionEnabled` value to `true`.\n",
+        "severity": {
+          "level": "Low",
+          "impact": "Medium",
+          "likelihood": "Low"
+        },
+        "taxonomies": {
+          "cwe": [
+            "319"
+          ]
+        },
+        "filepath": "cft/elasticache/elasticache-replication-group/deploy.json",
+        "language": "JSON",
+        "location": {
+          "start": {
+            "line": 18,
+            "column": 37,
+            "byte": 557
+          },
+          "end": {
+            "line": 18,
+            "column": 42,
+            "byte": 562
+          }
+        },
+        "issue_type": "missing_tls_cloudformation_elastic_cache",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto",
+          "info_leak"
+        ]
+      },
+      {
+        "checker_id": "database_encryption_disabled_cloudformation_rds_instance",
+        "uuid": "1dea3158-a327-5424-9718-8553d1e8d3d0",
+        "summary": "Encryption disabled",
+        "desc": "The Amazon Relational Database Service (Amazon RDS) instance is not encrypted, exposing data at rest.\n",
+        "remediation": "Enable database encryption by explicitly setting the `Properties.StorageEncrypted` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/rds/db-instance/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 64,
+            "column": 25,
+            "byte": 2114
+          },
+          "end": {
+            "line": 64,
+            "column": 30,
+            "byte": 2119
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Enable database instance encryption.",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 64,
+                    "column": 25,
+                    "byte": 2114
+                  },
+                  "end": {
+                    "line": 64,
+                    "column": 30,
+                    "byte": 2119
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "database_encryption_disabled_cloudformation_rds_instance",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "cloud_gateway_publicly_accessible_cloudformation_aws_apigateway",
+        "uuid": "26c481c6-6c61-5498-8f99-9ae4b1df32a1",
+        "summary": "API Gateway publicly accessible",
+        "desc": "The Amazon ApiGateway is publicly accessible, exposing downstream resources to the external network.\n",
+        "remediation": "Configure the `EndpointConfiguration.Types` list to contain only the type `PRIVATE`. This will restrict public access and only allow API requests originating from the organization's Amazon Virtual Private Cloud (VPC).\n",
+        "severity": {
+          "level": "High",
+          "impact": "Medium",
+          "likelihood": "High"
+        },
+        "taxonomies": {},
+        "filepath": "cft/api-gateway/api-gateway-rest-api/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 26,
+            "column": 13,
+            "byte": 572
+          },
+          "end": {
+            "line": 26,
+            "column": 17,
+            "byte": 576
+          }
+        },
+        "issue_type": "cloud_gateway_publicly_accessible_cloudformation_aws_apigateway",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "network"
+        ]
+      },
+      {
+        "checker_id": "unrestricted_ingress_terraform_aws_security_group",
+        "uuid": "3f73ed13-23e0-5428-b2a8-c99242be3e9d",
+        "summary": "GKE cluster unrestricted ingress",
+        "desc": "The AWS Security Group allows unrestricted ingress from any IP range, unnecessarily exposing the associated resources to all networks.\n",
+        "remediation": "Modify the AWS Security Group configuration so that the ingress `cidr_blocks` array does not include `0.0.0.0/0`.",
+        "severity": {
+          "level": "High",
+          "impact": "High",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {},
+        "filepath": "terraform/aws/modules/network/main.tf",
+        "language": "HCL",
+        "location": {
+          "start": {
+            "line": 118,
+            "column": 21,
+            "byte": 3589
+          },
+          "end": {
+            "line": 118,
+            "column": 30,
+            "byte": 3598
+          }
+        },
+        "issue_type": "unrestricted_ingress_terraform_aws_security_group",
+        "tags": [
+          "terraform",
+          "iac",
+          "aws",
+          "network"
+        ]
+      },
+      {
+        "checker_id": "cloud_storage_allows_public_config_cloudformation_aws_s3_bucket",
+        "uuid": "41c6c23d-2468-517b-9625-9e4efba64095",
+        "summary": "AWS S3 bucket weak access policy",
+        "desc": "The AWS S3 Bucket does not explicitly block all public access configurations via the `PublicAccessBlockConfiguration` field. As a result, an S3 Bucket might be publicly exposed via an insecure public ACL or IAM policy.\n",
+        "remediation": "Explicitly set the following `PublicAccessBlockConfiguration` fields to `true`: `BlockPublicAcls`, `BlockPublicPolicy`, `IgnorePublicAcls`, `RestrictPublicBuckets`.",
+        "severity": {
+          "level": "Info",
+          "impact": "Low",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/s3-bucket/deploy.yaml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 11,
+            "column": 9,
+            "byte": 267
+          },
+          "end": {
+            "line": 11,
+            "column": 30,
+            "byte": 288
+          }
+        },
+        "issue_type": "cloud_storage_allows_public_config_cloudformation_aws_s3_bucket",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "authz"
+        ]
+      },
+      {
+        "checker_id": "database_encryption_disabled_cloudformation_rds_cluster",
+        "uuid": "4a124665-302e-574d-8d74-de7eed6fd225",
+        "summary": "Encryption disabled",
+        "desc": "The Amazon Relational Database Service (Amazon RDS) cluster is not encrypted, exposing data at rest.\n",
+        "remediation": "Enable database cluster encryption by explicitly setting the `Properties.StorageEncrypted` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/rds/rds-cluster/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 6,
+            "column": 7,
+            "byte": 120
+          },
+          "end": {
+            "line": 14,
+            "column": 21,
+            "byte": 456
+          }
+        },
+        "issue_type": "database_encryption_disabled_cloudformation_rds_cluster",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "automatic_key_rotation_disabled_cloudformation_aws_kms",
+        "uuid": "4cfdedb8-b6b2-5a9a-bafd-26172b6cbf5e",
+        "summary": "Amazon KMS key rotation disabled",
+        "desc": "The AWS Key Management Service (KMS) has automatic key rotation disabled. Note that automatic key rotation only applies to symmetric customer master keys (CMKs).\n",
+        "remediation": "Enable automatic key rotation by explicitly setting the `Properties.EnableKeyRotation` value to `true`.\n",
+        "severity": {
+          "level": "Low",
+          "impact": "Medium",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/kms-key/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 7,
+            "column": 26,
+            "byte": 168
+          },
+          "end": {
+            "line": 7,
+            "column": 31,
+            "byte": 173
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Enable AWS KMS automatic key rotation.",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 7,
+                    "column": 26,
+                    "byte": 168
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 31,
+                    "byte": 173
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "automatic_key_rotation_disabled_cloudformation_aws_kms",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "missing_tls_cloudformation_load_balancer_classic",
+        "uuid": "59ef4bdc-2ca4-5c61-b338-c0110accca47",
+        "summary": "Missing TLS",
+        "desc": "The AWS Classic Load Balancer supports HTTP connections, indicated by the `Listeners.Protocol` value `HTTP`.\n",
+        "remediation": "Configure the load balancer to force HTTPS connections by changing the `Listeners.Protocol` to `HTTPS`.\n",
+        "severity": {
+          "level": "High",
+          "impact": "Medium",
+          "likelihood": "High"
+        },
+        "taxonomies": {
+          "cwe": [
+            "319"
+          ]
+        },
+        "filepath": "cft/network/elasticloadbalancing-loadbalancer/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 12,
+            "column": 19,
+            "byte": 288
+          },
+          "end": {
+            "line": 12,
+            "column": 23,
+            "byte": 292
+          }
+        },
+        "issue_type": "missing_tls_cloudformation_load_balancer_classic",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto",
+          "info_leak"
+        ]
+      },
+      {
+        "checker_id": "disk_encryption_disabled_cloudformation_elastic_search",
+        "uuid": "6065fec5-93d1-5048-8f23-673b26f76585",
+        "summary": "Missing disk-level encryption",
+        "desc": "The Amazon ElasticSearch Domain does not have encryption enabled for data at rest.\n",
+        "remediation": "Enable encryption for data at rest by explicitly setting the `Properties.EncryptionAtRestOptions.Enabled` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/elasticsearch-domain/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 14,
+            "column": 18,
+            "byte": 426
+          },
+          "end": {
+            "line": 14,
+            "column": 23,
+            "byte": 431
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Enable encryption for data at-rest.",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 14,
+                    "column": 18,
+                    "byte": 426
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 23,
+                    "byte": 431
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "disk_encryption_disabled_cloudformation_elastic_search",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "database_encryption_disabled_cloudformation_redshift_cluster",
+        "uuid": "62809406-9925-5968-af06-872da6d8a48e",
+        "summary": "Encryption disabled",
+        "desc": "The Amazon Redshift cluster does not have encryption enabled, exposing data at rest.\n",
+        "remediation": "Enable Redshift cluster encryption by explicitly setting the `Properties.Encrypted` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/redshift_cluster/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 38,
+            "column": 7,
+            "byte": 918
+          },
+          "end": {
+            "line": 50,
+            "column": 21,
+            "byte": 1244
+          }
+        },
+        "issue_type": "database_encryption_disabled_cloudformation_redshift_cluster",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "disk_encryption_disabled_cloudformation_efs",
+        "uuid": "6382df5b-09c6-5f31-a175-7dbaace94cf8",
+        "summary": "Missing disk-level encryption",
+        "desc": "The Amazon Elastic File System (Amazon EFS) is not encrypted, potentially exposing data at rest.\n",
+        "remediation": "Enable encryption for the Amazon Elastic File System instance by explicitly setting the `Properties.Encrypted` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/efs-filesystem/deploy.json",
+        "language": "JSON",
+        "location": {
+          "start": {
+            "line": 13,
+            "column": 30,
+            "byte": 404
+          },
+          "end": {
+            "line": 13,
+            "column": 35,
+            "byte": 409
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Enable file system encryption.",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 13,
+                    "column": 30,
+                    "byte": 404
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 35,
+                    "byte": 409
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "disk_encryption_disabled_cloudformation_efs",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "unrestricted_ingress_cloudformation_aws_ec2_security_group",
+        "uuid": "66532dab-a02d-530a-89d3-67c97bb56e0a",
+        "summary": "GKE cluster unrestricted ingress",
+        "desc": "The EC2 security group allows inbound traffic from any IP indicated by the `CidrIp` value `0.0.0.0/0`.\n",
+        "remediation": "Modify the `CidrIp` to restrict inbound traffic to a specific IP range if the EC2 instance is not meant to be publicly accessible.\n",
+        "severity": {
+          "level": "High",
+          "impact": "Medium",
+          "likelihood": "High"
+        },
+        "taxonomies": {},
+        "filepath": "cft/ec2/security-group/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 47,
+            "column": 19,
+            "byte": 1251
+          },
+          "end": {
+            "line": 47,
+            "column": 28,
+            "byte": 1260
+          }
+        },
+        "issue_type": "unrestricted_ingress_cloudformation_aws_ec2_security_group",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "network"
+        ]
+      },
+      {
+        "checker_id": "logging_disabled_terraform_aws_s3_bucket",
+        "uuid": "7307a9c4-c8a6-534c-b9f0-000851167eda",
+        "summary": "Logging disabled",
+        "desc": "AWS S3 server access logging is disabled, preventing auditing of requests made to an S3 bucket.\n",
+        "remediation": "Enable S3 server access logging by configuring the `logging` argument.",
+        "severity": {
+          "level": "Medium",
+          "impact": "Medium",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {
+          "cwe": [
+            "778"
+          ]
+        },
+        "filepath": "terraform/aws/modules/storage/main.tf",
+        "language": "HCL",
+        "location": {
+          "start": {
+            "line": 112,
+            "column": 43,
+            "byte": 3157
+          },
+          "end": {
+            "line": 114,
+            "column": 2,
+            "byte": 3188
+          }
+        },
+        "issue_type": "logging_disabled_terraform_aws_s3_bucket",
+        "tags": [
+          "terraform",
+          "log",
+          "iac",
+          "aws"
+        ]
+      },
+      {
+        "checker_id": "logging_disabled_terraform_aws_load_balancer",
+        "uuid": "8c4eeeb5-853f-5010-b192-0f828fddfd8e",
+        "summary": "Logging disabled",
+        "desc": "The AWS Elastic Load Balancer (ELB) native access logging is disabled.\n",
+        "remediation": "Modify the `aws_elb` resource configuration to define and enable the `access_logs` block.",
+        "severity": {
+          "level": "Medium",
+          "impact": "Medium",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {
+          "cwe": [
+            "778"
+          ]
+        },
+        "filepath": "terraform/aws/modules/network/main.tf",
+        "language": "HCL",
+        "location": {
+          "start": {
+            "line": 156,
+            "column": 27,
+            "byte": 4357
+          },
+          "end": {
+            "line": 160,
+            "column": 2,
+            "byte": 4514
+          }
+        },
+        "issue_type": "logging_disabled_terraform_aws_load_balancer",
+        "tags": [
+          "terraform",
+          "log",
+          "iac",
+          "aws"
+        ]
+      },
+      {
+        "checker_id": "missing_tls_cloudformation_elastic_search",
+        "uuid": "8ccb6bbc-0e7f-589c-9984-01bcd9e51d8f",
+        "summary": "Missing TLS",
+        "desc": "The Amazon Elasticsearch Service (Amazon ES) domain does not enforce HTTPS connections, exposing data in transit.\n",
+        "remediation": "Explicitly set the `Properties.DomainEndpointOptions.EnforceHTTPS` value to `true` to require HTTPS for all connections.\n",
+        "severity": {
+          "level": "High",
+          "impact": "Medium",
+          "likelihood": "High"
+        },
+        "taxonomies": {
+          "cwe": [
+            "319"
+          ]
+        },
+        "filepath": "cft/misc/elasticsearch-domain/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 5,
+            "column": 7,
+            "byte": 93
+          },
+          "end": {
+            "line": 39,
+            "column": 1,
+            "byte": 1179
+          }
+        },
+        "issue_type": "missing_tls_cloudformation_elastic_search",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto",
+          "info_leak"
+        ]
+      },
+      {
+        "checker_id": "exposed_privileged_account_cloudformation_ecs",
+        "uuid": "8fcedd82-c6b0-5c5c-a756-4d64276a6517",
+        "summary": "AWS IAM AccessKey for root account",
+        "desc": "The Amazon Elastic Container Service (Amazon ECS) has been granted an admin role, which violates the principle of least-privilege-necessary. As a result, compromised containers can make admin-level requests to other AWS services via the AWS SDK or CLI.\n",
+        "remediation": "Configure the ECS resource to use a non-admin role by modifying the `Properties.Role` field.",
+        "severity": {
+          "level": "Low",
+          "impact": "Medium",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/ecs/ecs-service/deploy.json",
+        "language": "JSON",
+        "location": {
+          "start": {
+            "line": 150,
+            "column": 18,
+            "byte": 3677
+          },
+          "end": {
+            "line": 150,
+            "column": 23,
+            "byte": 3682
+          }
+        },
+        "issue_type": "exposed_privileged_account_cloudformation_ecs",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "authz"
+        ]
+      },
+      {
+        "checker_id": "hardcoded_secret_cloudformation",
+        "uuid": "92da8873-af3a-530d-a777-a4097b2e5a75",
+        "summary": "File contains hardcoded secret",
+        "desc": "The Terraform configuration file contains a hardcoded secret such as a password, API key, signing key, token, etc.\n",
+        "remediation": "Avoid setting sensitive configuration values as string literals. Instead, these values should be set using variables with the sensitive data loaded from an encrypted file or secret store.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {
+          "cwe": [
+            "256"
+          ]
+        },
+        "filepath": "cft/misc/docdb-cluster/deploy.json",
+        "language": "JSON",
+        "location": {
+          "start": {
+            "line": 12,
+            "column": 32,
+            "byte": 412
+          },
+          "end": {
+            "line": 12,
+            "column": 57,
+            "byte": 437
+          }
+        },
+        "issue_type": "hardcoded_secret_cloudformation",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "secret"
+        ]
+      },
+      {
+        "checker_id": "storage_versioning_disabled_cloudformation_aws_s3_bucket",
+        "uuid": "938753ae-45c8-5d30-832a-56e4e1c6e3c7",
+        "summary": "AWS S3 Bucket versioning disabled",
+        "desc": "The Amazon S3 Bucket does not have versioning enabled. Versioning creates multiple versions of all objects in the bucket to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions.\n",
+        "remediation": "Enable S3 Bucket versioning by explicitly setting the `Properties.VersioningConfiguration.Status` value to \"Enabled\".\n",
+        "severity": {
+          "level": "Low",
+          "impact": "Medium",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/s3-bucket/deploy.yaml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 6,
+            "column": 7,
+            "byte": 100
+          },
+          "end": {
+            "line": 17,
+            "column": 32,
+            "byte": 500
+          }
+        },
+        "issue_type": "storage_versioning_disabled_cloudformation_aws_s3_bucket",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "backup"
+        ]
+      },
+      {
+        "checker_id": "disk_encryption_disabled_cloudformation_dax",
+        "uuid": "a2578c4e-6f2c-571f-bf43-01427fc1ecc3",
+        "summary": "Missing disk-level encryption",
+        "desc": "The Amazon DAX cluster does not have server-side encryption enabled, exposing data at rest.\n",
+        "remediation": "Enable server-side encryption by explicitly setting the `Properties.SSESpecification.SSEEnabled` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/dax-cluster/deploy.yaml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 8,
+            "column": 21,
+            "byte": 188
+          },
+          "end": {
+            "line": 8,
+            "column": 26,
+            "byte": 193
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Enable DAX cluster encryption.",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 8,
+                    "column": 21,
+                    "byte": 188
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 26,
+                    "byte": 193
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "disk_encryption_disabled_cloudformation_dax",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "logging_disabled_terraform_aws_s3_bucket",
+        "uuid": "ac02ceab-e303-5cec-aef4-ed2304510ecb",
+        "summary": "Logging disabled",
+        "desc": "AWS S3 server access logging is disabled, preventing auditing of requests made to an S3 bucket.\n",
+        "remediation": "Enable S3 server access logging by configuring the `logging` argument.",
+        "severity": {
+          "level": "Medium",
+          "impact": "Medium",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {
+          "cwe": [
+            "778"
+          ]
+        },
+        "filepath": "terraform/aws/modules/storage/main.tf",
+        "language": "HCL",
+        "location": {
+          "start": {
+            "line": 104,
+            "column": 44,
+            "byte": 2953
+          },
+          "end": {
+            "line": 110,
+            "column": 2,
+            "byte": 3113
+          }
+        },
+        "issue_type": "logging_disabled_terraform_aws_s3_bucket",
+        "tags": [
+          "terraform",
+          "log",
+          "iac",
+          "aws"
+        ]
+      },
+      {
+        "checker_id": "insecure_tls_cipher_suite_cloudformation_load_balancer",
+        "uuid": "ae2a942a-1008-58e8-96b8-53e4ae133591",
+        "summary": "Insecure TLS Cipher Suite",
+        "desc": "The AWS Load Balancer is configured with an insecure policy that supports weak TLS cipher suites.\n",
+        "remediation": "Set the `SslPolicy` field to a policy that requires secure cipher suites, for example `ELBSecurityPolicy-FS-1-2-Res-2020-10`.\n",
+        "severity": {
+          "level": "Low",
+          "impact": "Low",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {},
+        "filepath": "cft/network/elasticloadbalancerv2-listener/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 5,
+            "column": 6,
+            "byte": 96
+          },
+          "end": {
+            "line": 17,
+            "column": 1,
+            "byte": 411
+          }
+        },
+        "issue_type": "insecure_tls_cipher_suite_cloudformation_load_balancer",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto",
+          "cipher"
+        ]
+      },
+      {
+        "checker_id": "hardcoded_secret_cloudformation",
+        "uuid": "b2a28b5b-c607-5ed3-af9e-228a324a4ddc",
+        "summary": "File contains hardcoded secret",
+        "desc": "The Terraform configuration file contains a hardcoded secret such as a password, API key, signing key, token, etc.\n",
+        "remediation": "Avoid setting sensitive configuration values as string literals. Instead, these values should be set using variables with the sensitive data loaded from an encrypted file or secret store.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {
+          "cwe": [
+            "256"
+          ]
+        },
+        "filepath": "cft/misc/docdb-cluster/docdb_with_storage_encrypted.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 11,
+            "column": 32,
+            "byte": 382
+          },
+          "end": {
+            "line": 11,
+            "column": 57,
+            "byte": 407
+          }
+        },
+        "issue_type": "hardcoded_secret_cloudformation",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "secret"
+        ]
+      },
+      {
+        "checker_id": "missing_tls_node_to_node_cloudformation_elastic_search",
+        "uuid": "bbed2c78-52e8-53af-ba92-33cd0dcc30ea",
+        "summary": "Amazon ElasticSearch missing node-to-node encryption",
+        "desc": "The Amazon Elasticsearch Service (Amazon ES) domain does not use TLS for node-to-node encryption within the VPC.\n",
+        "remediation": "Enable node-to-node encryption by explicitly setting the `Properties.NodeToNodeEncryptionOptions.Enabled` value to `true`.\n",
+        "severity": {
+          "level": "Low",
+          "impact": "Medium",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/elasticsearch-domain/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 5,
+            "column": 7,
+            "byte": 93
+          },
+          "end": {
+            "line": 39,
+            "column": 1,
+            "byte": 1179
+          }
+        },
+        "issue_type": "missing_tls_node_to_node_cloudformation_elastic_search",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "database_encryption_disabled_cloudformation_doc_db",
+        "uuid": "c49efa49-4953-5ce9-9992-99b9e9791c13",
+        "summary": "Encryption disabled",
+        "desc": "The Amazon DocDB cluster does not have server-side encryption enabled, exposing data at rest.\n",
+        "remediation": "Enable server-side encryption by explicitly setting the `Properties.StorageEncrypted` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/docdb-cluster/docdb_with_kms.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 6,
+            "column": 10,
+            "byte": 131
+          },
+          "end": {
+            "line": 17,
+            "column": 1,
+            "byte": 635
+          }
+        },
+        "issue_type": "database_encryption_disabled_cloudformation_doc_db",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "storage_versioning_disabled_cloudformation_dynamo_db",
+        "uuid": "ca17da8c-23f6-5f15-957a-ce9290352076",
+        "summary": "AWS S3 Bucket versioning disabled",
+        "desc": "The Amazon DynamoDB Table does not have point-in-time recovery (PITR) enabled. As a result, there are no protections against accidental writes and deletes.\n",
+        "remediation": "Enable point-in-time recovery by explicitly setting the `PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled` value to `true`.\n",
+        "severity": {
+          "level": "Low",
+          "impact": "Medium",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/dynamodb-table/deploy.yaml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 6,
+            "column": 7,
+            "byte": 125
+          },
+          "end": {
+            "line": 67,
+            "column": 10,
+            "byte": 1991
+          }
+        },
+        "issue_type": "storage_versioning_disabled_cloudformation_dynamo_db",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac"
+        ]
+      },
+      {
+        "checker_id": "missing_tls_terraform_aws_load_balancer",
+        "uuid": "d6ec6f4d-ff44-5a54-99f3-01b1891f5e97",
+        "summary": "Missing TLS",
+        "desc": "The AWS load balancer accepts unprotected HTTP connections allowing any attacker on the network to perform man-in-the-middle attacks.\n",
+        "remediation": "Configure the AWS load balancer to only support TLS-protected HTTPS connections by explicitly setting the resource's `protocol` value to `HTTPS` or by setting the `default_action.redirect.protocol` value to `HTTPS`.",
+        "severity": {
+          "level": "Medium",
+          "impact": "Medium",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {
+          "cwe": [
+            "319"
+          ]
+        },
+        "filepath": "terraform/aws/modules/network/main.tf",
+        "language": "HCL",
+        "location": {
+          "start": {
+            "line": 175,
+            "column": 24,
+            "byte": 4949
+          },
+          "end": {
+            "line": 175,
+            "column": 28,
+            "byte": 4953
+          }
+        },
+        "issue_type": "missing_tls_terraform_aws_load_balancer",
+        "tags": [
+          "terraform",
+          "iac",
+          "aws",
+          "crypto",
+          "info_leak"
+        ]
+      },
+      {
+        "checker_id": "unrestricted_ingress_cloudformation_aws_ec2_security_group",
+        "uuid": "d8035939-8ac4-5ea7-996e-a870a568d6b9",
+        "summary": "GKE cluster unrestricted ingress",
+        "desc": "The EC2 security group allows inbound traffic from any IP indicated by the `CidrIp` value `0.0.0.0/0`.\n",
+        "remediation": "Modify the `CidrIp` to restrict inbound traffic to a specific IP range if the EC2 instance is not meant to be publicly accessible.\n",
+        "severity": {
+          "level": "High",
+          "impact": "Medium",
+          "likelihood": "High"
+        },
+        "taxonomies": {},
+        "filepath": "cft/ec2/security-group/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 65,
+            "column": 19,
+            "byte": 1753
+          },
+          "end": {
+            "line": 65,
+            "column": 28,
+            "byte": 1762
+          }
+        },
+        "issue_type": "unrestricted_ingress_cloudformation_aws_ec2_security_group",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "network"
+        ]
+      },
+      {
+        "checker_id": "hardcoded_secret_cloudformation",
+        "uuid": "de0abeee-d3a8-51c8-89a7-ed15b5f30648",
+        "summary": "File contains hardcoded secret",
+        "desc": "The Terraform configuration file contains a hardcoded secret such as a password, API key, signing key, token, etc.\n",
+        "remediation": "Avoid setting sensitive configuration values as string literals. Instead, these values should be set using variables with the sensitive data loaded from an encrypted file or secret store.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {
+          "cwe": [
+            "256"
+          ]
+        },
+        "filepath": "cft/iam/iam-user/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 6,
+            "column": 21,
+            "byte": 103
+          },
+          "end": {
+            "line": 6,
+            "column": 29,
+            "byte": 111
+          }
+        },
+        "issue_type": "hardcoded_secret_cloudformation",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "secret"
+        ]
+      },
+      {
+        "checker_id": "cloud_resource_assigned_public_ip_cloudformation_aws_rds",
+        "uuid": "e118a46e-f385-5539-8558-12512cc6db1e",
+        "summary": "AWS EC2 with public IP",
+        "desc": "The Amazon Relational Database Service (RDS) initializes a database instance with a public IP, exposing it to the public internet.\n",
+        "remediation": "Set the `Properties.PubliclyAccessible` field to `false` to prevent the service from assigning a public IP to the database instance.\n",
+        "severity": {
+          "level": "Critical",
+          "impact": "High",
+          "likelihood": "High"
+        },
+        "taxonomies": {},
+        "filepath": "cft/rds/db-instance/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 67,
+            "column": 27,
+            "byte": 2228
+          },
+          "end": {
+            "line": 67,
+            "column": 31,
+            "byte": 2232
+          }
+        },
+        "issue_type": "cloud_resource_assigned_public_ip_cloudformation_aws_rds",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "network"
+        ]
+      },
+      {
+        "checker_id": "unrestricted_ingress_terraform_aws_security_group",
+        "uuid": "e60a7f07-5a68-56d9-a9c4-2e4affefacca",
+        "summary": "GKE cluster unrestricted ingress",
+        "desc": "The AWS Security Group allows unrestricted ingress from any IP range, unnecessarily exposing the associated resources to all networks.\n",
+        "remediation": "Modify the AWS Security Group configuration so that the ingress `cidr_blocks` array does not include `0.0.0.0/0`.",
+        "severity": {
+          "level": "High",
+          "impact": "High",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {},
+        "filepath": "terraform/aws/modules/storage/main.tf",
+        "language": "HCL",
+        "location": {
+          "start": {
+            "line": 23,
+            "column": 21,
+            "byte": 540
+          },
+          "end": {
+            "line": 23,
+            "column": 30,
+            "byte": 549
+          }
+        },
+        "issue_type": "unrestricted_ingress_terraform_aws_security_group",
+        "tags": [
+          "terraform",
+          "iac",
+          "aws",
+          "network"
+        ]
+      },
+      {
+        "checker_id": "insecure_tls_version_cloudformation_elastic_search",
+        "uuid": "e61184b5-1140-52e3-88b7-c4f054c9743f",
+        "summary": "Unsafe minimum TLS version",
+        "desc": "The Amazon Elasticsearch Service (Amazon ES) domain supports TLS 1.0.\n",
+        "remediation": "Configure the ElasticSearch service domain to require TLS 1.2 or newer by explicitly setting the `Properties.DomainEndpointOptions.TLSSecurityPolicy` value to `Policy-Min-TLS-1-2-2019-07`.\n",
+        "severity": {
+          "level": "Info",
+          "impact": "Low",
+          "likelihood": "Low"
+        },
+        "taxonomies": {
+          "cwe": [
+            "327"
+          ]
+        },
+        "filepath": "cft/misc/elasticsearch-domain/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 5,
+            "column": 7,
+            "byte": 93
+          },
+          "end": {
+            "line": 39,
+            "column": 1,
+            "byte": 1179
+          }
+        },
+        "issue_type": "insecure_tls_version_cloudformation_elastic_search",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "logging_disabled_cloudformation_aws_s3_bucket",
+        "uuid": "f149254e-aa3d-5942-8bdd-b6c1673ab8fe",
+        "summary": "Logging disabled",
+        "desc": "The AWS S3 Bucket does not have access logging enabled.\n",
+        "remediation": "Enable access logging for the AWS S3 Bucket by defining the `LoggingConfiguration` field.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "Medium",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {
+          "cwe": [
+            "778"
+          ]
+        },
+        "filepath": "cft/misc/s3-bucket/deploy.yaml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 6,
+            "column": 7,
+            "byte": 100
+          },
+          "end": {
+            "line": 17,
+            "column": 32,
+            "byte": 500
+          }
+        },
+        "issue_type": "logging_disabled_cloudformation_aws_s3_bucket",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "log"
+        ]
+      },
+      {
+        "checker_id": "unrestricted_ingress_terraform_aws_security_group",
+        "uuid": "f65dae7d-d20e-54cf-aa04-9ef80f3c3885",
+        "summary": "GKE cluster unrestricted ingress",
+        "desc": "The AWS Security Group allows unrestricted ingress from any IP range, unnecessarily exposing the associated resources to all networks.\n",
+        "remediation": "Modify the AWS Security Group configuration so that the ingress `cidr_blocks` array does not include `0.0.0.0/0`.",
+        "severity": {
+          "level": "High",
+          "impact": "High",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {},
+        "filepath": "terraform/aws/modules/network/main.tf",
+        "language": "HCL",
+        "location": {
+          "start": {
+            "line": 111,
+            "column": 21,
+            "byte": 3474
+          },
+          "end": {
+            "line": 111,
+            "column": 30,
+            "byte": 3483
+          }
+        },
+        "issue_type": "unrestricted_ingress_terraform_aws_security_group",
+        "tags": [
+          "terraform",
+          "iac",
+          "aws",
+          "network"
+        ]
+      },
+      {
+        "checker_id": "disk_encryption_disabled_cloudformation_workspace_volume",
+        "uuid": "fa6a712c-c8c4-5486-8a46-bcb27265eecf",
+        "summary": "Missing disk-level encryption",
+        "desc": "The Amazon WorkSpace volume does not have encryption enabled, exposing data at rest.\n",
+        "remediation": "Enable volume encryption by explicitly setting the `Properties.UserVolumeEncryptionEnabled` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/workspaces-workspace/deploy.json",
+        "language": "JSON",
+        "location": {
+          "start": {
+            "line": 9,
+            "column": 43,
+            "byte": 256
+          },
+          "end": {
+            "line": 9,
+            "column": 48,
+            "byte": 261
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Enable root volume encryption.",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 9,
+                    "column": 43,
+                    "byte": 256
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 48,
+                    "byte": 261
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "disk_encryption_disabled_cloudformation_workspace_volume",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "database_encryption_disabled_cloudformation_dynamo_db",
+        "uuid": "fc22f115-6a3a-5f29-9b80-4a6a4f388020",
+        "summary": "Encryption disabled",
+        "desc": "The Amazon DynamoDB table does not have server-side encryption enabled, exposing data at rest.\n",
+        "remediation": "Enable server-side encryption by explicitly setting the `Properties.SSESpecification.SSEEnabled` value to `true`.\n",
+        "severity": {
+          "level": "Medium",
+          "impact": "High",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/misc/dynamodb-table/deploy.yaml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 7,
+            "column": 21,
+            "byte": 163
+          },
+          "end": {
+            "line": 7,
+            "column": 26,
+            "byte": 168
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Enable server-side encryption.",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 7,
+                    "column": 21,
+                    "byte": 163
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 26,
+                    "byte": 168
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "database_encryption_disabled_cloudformation_dynamo_db",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "crypto"
+        ]
+      },
+      {
+        "checker_id": "no_password_change_on_first_login_cloudformation_aws_iam",
+        "uuid": "fdea41e2-f065-5f99-979b-436808da987e",
+        "summary": "AWS IAM User password reset not required",
+        "desc": "The AWS IAM user is initialized with a password that is not required  to be changed on first login.\n",
+        "remediation": "Set the `Properties.LoginProfile.PasswordResetRequired` value to `true`  to force a password change on first login.",
+        "severity": {
+          "level": "Info",
+          "impact": "Low",
+          "likelihood": "Low"
+        },
+        "taxonomies": {},
+        "filepath": "cft/iam/iam-user/deploy.yml",
+        "language": "YAML",
+        "location": {
+          "start": {
+            "line": 7,
+            "column": 33,
+            "byte": 145
+          },
+          "end": {
+            "line": 7,
+            "column": 38,
+            "byte": 150
+          }
+        },
+        "fixes": [
+          {
+            "desc": "Force password change at first login",
+            "actions": [
+              {
+                "location": {
+                  "start": {
+                    "line": 7,
+                    "column": 33,
+                    "byte": 145
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 38,
+                    "byte": 150
+                  }
+                },
+                "kind": "Change",
+                "contents": "true"
+              }
+            ]
+          }
+        ],
+        "issue_type": "no_password_change_on_first_login_cloudformation_aws_iam",
+        "tags": [
+          "aws",
+          "cloudformation",
+          "iac",
+          "authn"
+        ]
+      },
+      {
+        "checker_id": "logging_disabled_terraform_aws_s3_bucket",
+        "uuid": "ff1a294d-9657-5d8b-a6ff-33a5ad2ce83a",
+        "summary": "Logging disabled",
+        "desc": "AWS S3 server access logging is disabled, preventing auditing of requests made to an S3 bucket.\n",
+        "remediation": "Enable S3 server access logging by configuring the `logging` argument.",
+        "severity": {
+          "level": "Medium",
+          "impact": "Medium",
+          "likelihood": "Medium"
+        },
+        "taxonomies": {
+          "cwe": [
+            "778"
+          ]
+        },
+        "filepath": "cft/misc/s3-bucket/test.tf",
+        "language": "HCL",
+        "location": {
+          "start": {
+            "line": 1,
+            "column": 37,
+            "byte": 36
+          },
+          "end": {
+            "line": 11,
+            "column": 2,
+            "byte": 197
+          }
+        },
+        "issue_type": "logging_disabled_terraform_aws_s3_bucket",
+        "tags": [
+          "terraform",
+          "log",
+          "iac",
+          "aws"
+        ]
+      }
+    ]
+  }
+}
