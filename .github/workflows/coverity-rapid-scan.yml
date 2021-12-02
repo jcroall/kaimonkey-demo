@@ -1,0 +1,26 @@
+name: Coverity on Polaris with Self-Hosted Runner
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Java 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+
+    - name: Run Sigma
+      uses: jcroall/sigma-action@v0.0.1
+      with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
