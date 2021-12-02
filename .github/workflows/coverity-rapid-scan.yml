@@ -27,7 +27,7 @@ jobs:
 
 
     - name: Run Synopsys Detect
-      uses: synopsys-sig/detect-action@v0.0.1
+      uses: synopsys-sig/detect-action@v1.0.0
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.7.0
