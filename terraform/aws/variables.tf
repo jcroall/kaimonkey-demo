@@ -19,3 +19,4 @@ variable "default_tags" {
   default     = {}
   description = "default tags to resources"
 }
+
