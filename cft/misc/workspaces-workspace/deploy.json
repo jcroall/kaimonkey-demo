@@ -8,7 +8,7 @@
           "DirectoryId" : "String",
           "RootVolumeEncryptionEnabled" : false,
           "UserName" : "String",
-          "UserVolumeEncryptionEnabled" : false,
+          "UserVolumeEncryptionEnabled" : false, 
           "VolumeEncryptionKey" : "String"
         }
     }
